@@ -1,0 +1,62 @@
+$lightGreen: #b9e7e7;
+
+.app {
+
+
+    .container{
+
+
+        //LOGIN & REGISTER
+        .auth {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: $lightGreen;
+
+            h1{
+                font-size: 20px;
+                color: teal;
+                margin-bottom: 20px;
+            }
+
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+                background-color: white;
+                width: 280px;
+                border-radius: 10px;
+
+                input{
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 1px solid gray;
+                    outline: none;
+                }
+
+                button{
+                    padding: 10px;
+                    border: none;
+                    background-color: teal;
+                    cursor: pointer;
+                    color: white;
+                    border-radius: 12px;
+                }
+
+                p{
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: red;
+                    text-align: center;
+                }
+                span{
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
