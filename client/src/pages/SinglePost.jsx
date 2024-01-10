@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
+import Menu from '../components/Menu';
 
 
 const SinglePost = () => {
@@ -30,11 +31,41 @@ const SinglePost = () => {
             </div>
           </div>
         </div>
+
+        <h1>Pellentesque ut neque. Nullam accumsan lorem in dui.</h1>
+        <p>
+          Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Aenean massa. Praesent egestas neque eu enim. Etiam vitae tortor.
+          Vestibulum suscipit nulla quis orci. Etiam ultricies nisi vel augue. Duis lobortis massa imperdiet quam. Aenean massa.
+          Vivamus consectetuer hendrerit lacus. Nullam vel sem. Phasellus blandit leo ut odio. Fusce vulputate eleifend sapien.
+          Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Ut id nisl quis enim dignissim sagittis. Sed aliquam ultrices mauris. Proin faucibus arcu quis ante.
+
+          <br />
+          <br />
+
+          Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Aenean massa. Praesent egestas neque eu enim. Etiam vitae tortor.
+          Vestibulum suscipit nulla quis orci. Etiam ultricies nisi vel augue. Duis lobortis massa imperdiet quam. Aenean massa.
+          Vivamus consectetuer hendrerit lacus. Nullam vel sem. Phasellus blandit leo ut odio. Fusce vulputate eleifend sapien.
+          Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Ut id nisl quis enim dignissim sagittis. Sed aliquam ultrices mauris. Proin faucibus arcu quis ante.
+
+          <br />
+          <br />
+
+          Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Aenean massa. Praesent egestas neque eu enim. Etiam vitae tortor.
+          Vestibulum suscipit nulla quis orci. Etiam ultricies nisi vel augue. Duis lobortis massa imperdiet quam. Aenean massa.
+          Vivamus consectetuer hendrerit lacus. Nullam vel sem. Phasellus blandit leo ut odio. Fusce vulputate eleifend sapien.
+          Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Ut id nisl quis enim dignissim sagittis. Sed aliquam ultrices mauris. Proin faucibus arcu quis ante.
+
+          <br />
+          <br />
+
+          Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Aenean massa. Praesent egestas neque eu enim. Etiam vitae tortor.
+          Vestibulum suscipit nulla quis orci. Etiam ultricies nisi vel augue. Duis lobortis massa imperdiet quam. Aenean massa.
+          Vivamus consectetuer hendrerit lacus. Nullam vel sem. Phasellus blandit leo ut odio. Fusce vulputate eleifend sapien.
+          Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Ut id nisl quis enim dignissim sagittis. Sed aliquam ultrices mauris. Proin faucibus arcu quis ante.
+        </p>
       </div>
 
-      <div className="menu">
-        menu
-      </div>
+      <Menu />
 
     </div>
   )
