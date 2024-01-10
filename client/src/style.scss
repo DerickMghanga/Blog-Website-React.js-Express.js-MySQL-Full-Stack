@@ -5,10 +5,10 @@ $lightGreen: #b9e7e7;
     justify-content: center;
 
 
-    .container{
+    .container {
         width: 1024px;
 
-        .link{
+        .link {
             text-decoration: none;
             color: inherit;
         }
@@ -22,13 +22,13 @@ $lightGreen: #b9e7e7;
             height: 100vh;
             background-color: $lightGreen;
 
-            h1{
+            h1 {
                 font-size: 20px;
                 color: teal;
                 margin-bottom: 20px;
             }
 
-            form{
+            form {
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
@@ -37,14 +37,14 @@ $lightGreen: #b9e7e7;
                 width: 280px;
                 border-radius: 10px;
 
-                input{
+                input {
                     padding: 10px;
                     border: none;
                     border-bottom: 1px solid gray;
                     outline: none;
                 }
 
-                button{
+                button {
                     padding: 10px;
                     border: none;
                     background-color: teal;
@@ -53,13 +53,14 @@ $lightGreen: #b9e7e7;
                     border-radius: 12px;
                 }
 
-                p{
+                p {
                     font-size: 12px;
                     font-weight: bold;
                     color: red;
                     text-align: center;
                 }
-                span{
+
+                span {
                     font-size: 12px;
                     text-align: center;
                 }
@@ -67,34 +68,34 @@ $lightGreen: #b9e7e7;
         }
 
         //NAVBAR
-        .navbar{
+        .navbar {
 
-            .container{
+            .container {
                 display: flex;
                 justify-content: space-between;
                 padding: 10px 0px;
                 align-items: center;
 
-                .logo{
-                    img{
+                .logo {
+                    img {
                         width: 70px;
                     }
                 }
 
-                .links{
+                .links {
                     display: flex;
                     gap: 15px;
                     align-items: center;
 
-                    h5{
+                    h5 {
                         font-weight: 350;
                     }
 
-                    span{
+                    span {
                         cursor: pointer;
                     }
 
-                    .write{
+                    .write {
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -105,7 +106,7 @@ $lightGreen: #b9e7e7;
                         font-weight: 300;
                         border: 1px solid $lightGreen;
 
-                        &:hover{
+                        &:hover {
                             color: teal;
                             border: 1px solid teal;
                             background-color: white;
@@ -116,7 +117,7 @@ $lightGreen: #b9e7e7;
         }
 
         //FOOTER
-        footer{
+        footer {
             margin-top: 100px;
             padding: 20px;
             background-color: $lightGreen;
@@ -125,22 +126,22 @@ $lightGreen: #b9e7e7;
             justify-content: space-between;
             font-size: 12px;
 
-            img{
+            img {
                 width: 50px;
                 height: 50px;
             }
         }
 
         //HOME PAGE
-        .home{
+        .home {
 
-            .posts{
+            .posts {
                 margin-top: 50px;
                 display: flex;
                 flex-direction: column;
                 gap: 150px;
 
-                .post{
+                .post {
                     display: flex;
                     gap: 100px;
 
@@ -148,11 +149,11 @@ $lightGreen: #b9e7e7;
                         flex-direction: row-reverse;
                     }
 
-                    .img{
+                    .img {
                         flex: 2;
                         position: relative;
 
-                        &::after{
+                        &::after {
                             content: "";
                             width: 100%;
                             height: 100%;
@@ -163,28 +164,28 @@ $lightGreen: #b9e7e7;
                             z-index: -1;
                         }
 
-                        img{
+                        img {
                             width: 100%;
                             max-height: 400px;
                             object-fit: cover;
                         }
                     }
 
-                    .content{
+                    .content {
                         flex: 3;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
 
-                        h1{
+                        h1 {
                             font-size: 34px;
                         }
 
-                        p{
+                        p {
                             font-size: 16px;
                         }
 
-                        button{
+                        button {
                             width: max-content;
                             padding: 10px 20px;
                             cursor: pointer;
@@ -192,7 +193,7 @@ $lightGreen: #b9e7e7;
                             border: 1px solid teal;
                             color: teal;
 
-                            &:hover{
+                            &:hover {
                                 border: 1px solid white;
                                 background-color: $lightGreen;
                                 color: black;
@@ -200,6 +201,81 @@ $lightGreen: #b9e7e7;
                         }
                     }
                 }
+            }
+        }
+
+        //SINGLE POST PAGE
+        .single {
+            display: flex;
+            gap: 40px;
+
+            .content {
+                flex: 5;
+
+                img {
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                }
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    margin-top: 10px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .info {
+                        font-size: 14px;
+
+                        p {
+                            font-weight: bold;
+                            margin: 3px 0;
+                        }
+
+                        span {
+                            font-size: 12px;
+                        }
+                    }
+
+                    .edit {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .edit-icon {
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #2b8c6f;
+                            cursor: pointer;
+                        }
+
+                        .delete-icon {
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #f2645a;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .menu {
+                flex: 2;
             }
         }
 
