@@ -11,7 +11,7 @@ export const register = (req, res) => {
     db.query(q, [email, username], (err, data) => {
         if (err) return res.status(500).json(err); //if there is an error
 
-        if (data.length > 0) return res.json({ message: "User already exists!" });
+        if (data.length > 0) return res.status(409).json({ message: "User already exists!" });
 
         //hash password
         const salt = bcrypt.genSaltSync(10);
@@ -36,7 +36,26 @@ export const register = (req, res) => {
 
 //USER LOGIN
 export const login = (req, res) => {
-  return res.json("from controller");
+
+  const {username, password} = req.body;
+
+  const q = "SELECT * FROM users WHERE username = ?"
+
+  db.query(q, [username], (err, data) => {
+    if (err) return res.json(err);
+
+    //if username doesnt exist or user isn't registered
+    if (data.length == 0) return res.status(404).json({message: "User not found!"})
+
+    //check if password is correct
+    const pwdCheck = bcrypt.compareSync(password, data[0].password);
+
+    if (!pwdCheck) return res.status(401).json({message: "Incorrect password! Try again."})
+
+
+    return res.json("from controller");
+  })
+
 };
 
 //USER LOGOUT
