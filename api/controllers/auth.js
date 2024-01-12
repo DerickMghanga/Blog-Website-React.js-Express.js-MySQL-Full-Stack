@@ -1,5 +1,6 @@
 import { db } from "../config/dbConnect.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //REGISTER USER
 export const register = (req, res) => {
@@ -37,23 +38,28 @@ export const register = (req, res) => {
 //USER LOGIN
 export const login = (req, res) => {
 
-  const {username, password} = req.body;
-
   const q = "SELECT * FROM users WHERE username = ?"
 
-  db.query(q, [username], (err, data) => {
+  db.query(q, [req.body.username], (err, data) => {
     if (err) return res.json(err);
 
     //if username doesnt exist or user isn't registered
     if (data.length == 0) return res.status(404).json({message: "User not found!"})
 
     //check if password is correct
-    const pwdCheck = bcrypt.compareSync(password, data[0].password);
+    const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password);
 
-    if (!pwdCheck) return res.status(401).json({message: "Incorrect password! Try again."})
+    if (!isPasswordCorrect) return res.status(401).json({message: "Incorrect password! Try again."})
 
+    //create token data
+    const token = jwt.sign({id: data[0].id}, process.env.JWT_SECRET_KEY);
 
-    return res.json("from controller");
+    //desctructure user Info(data[0]), only send back data without password 
+    const {password, ...others} = data[0]
+
+    res.cookie("access_token", token, {
+      httpOnly: true
+    }).status(200).json(others);
   })
 
 };

@@ -1,5 +1,7 @@
 import express from "express";
 import 'dotenv/config'
+import cookieParser from "cookie-parser";
+
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
@@ -12,6 +14,7 @@ const PORT = process.env.PORT;
 
 //MIDDLEWARES
 app.use(express.json());
+app.use(cookieParser());
 
 
 //ROUTES
