@@ -66,5 +66,9 @@ export const login = (req, res) => {
 
 //USER LOGOUT
 export const logout = (req, res) => {
-  return res.json("from controller");
+
+  res.clearCookie("access_token", {
+    sameSite: "none",
+    secure: true
+  }).status(200).json({message: "Log out Successfull!"});
 };

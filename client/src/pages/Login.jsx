@@ -1,36 +1,37 @@
-import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/authContext';
 
 const Login = () => {
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: ""
-  })
-
-  const [err, setErr] = useState("");
-
-  //console.log(inputs);
-
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();  //prevent page refresh
-
-    await axios.post("/auth/login", inputs)
-      .then((res) => {
-        //console.log(res.data);
-        navigate("/");
-      }
-      ).catch((err) => {
-        setErr(err.response.data.message);  //display error
+    const [inputs, setInputs] = useState({
+      username: "",
+      password: ""
     })
-  }
+
+    const [err, setErr] = useState("");
+
+    const {login, currentUser} = useContext(AuthContext);
+
+    //console.log(currentUser);
+    //console.log(inputs);
+
+    const handleChange = (e) => {
+      setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    }
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();  //prevent page refresh
+      
+      try {
+        await login(inputs);
+        navigate("/");
+      } catch (err) {
+        setErr(err.response.data.message);
+      }
+    }
 
   return (
     <div className='auth'>
