@@ -29,7 +29,7 @@ const Login = () => {
       }
       ).catch((err) => {
         setErr(err.response.data.message);  //display error
-      })
+    })
   }
 
   return (
