@@ -6,13 +6,15 @@ import { AuthContext } from '../context/authContext';
 
 const NavBar = () => {
 
-  const {currentUser, logout} = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
 
   return (
     <div className='navbar'>
       <div className="container">
         <div className="logo">
-          <img src={Logo} alt="app-logo" />
+          <Link to="/">
+            <img src={Logo} alt="app-logo" />
+          </Link>
         </div>
         <div className="links">
           <Link className='link' to="/?cat=art">
@@ -36,11 +38,11 @@ const NavBar = () => {
           <span className='username'>{currentUser?.username}</span>
 
           {
-            currentUser ? 
-            <span onClick={logout}>Logout</span> : 
-            <Link to="/login" className='link'>Login</Link>
+            currentUser ?
+              <span onClick={logout}>Logout</span> :
+              <Link to="/login" className='link'>Login</Link>
           }
-          
+
           <span className='write'>
             <Link className='link' to="/write">Write</Link>
           </span>

@@ -1,34 +1,53 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import axios from "axios";
 
 const Home = () => {
 
-  const posts = [
-    {
-      id: 1,
-      title: "Etiam ultricies nisi vel augue",
-      desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
-      img: "https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      title: "Etiam ultricies nisi vel augue",
-      desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
-      img: "https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 3,
-      title: "Etiam ultricies nisi vel augue",
-      desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
-      img: "https://images.pexels.com/photos/965117/pexels-photo-965117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 4,
-      title: "Etiam ultricies nisi vel augue",
-      desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
-      img: "https://images.pexels.com/photos/261579/pexels-photo-261579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  const cat = useLocation().search;  //get search parameter when category is selected
+  console.log(cat);
+
+  useEffect(()=> {
+    const fetchPosts = async() => {
+      try {
+        const res = await axios.get(`/posts${cat}`);
+        setPosts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchPosts();
+  }, [cat]);  //  whenever a category is selected it refetches the posts
+
+  // const posts = [
+  //   {
+  //     id: 1,
+  //     title: "Etiam ultricies nisi vel augue",
+  //     desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
+  //     img: "https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Etiam ultricies nisi vel augue",
+  //     desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
+  //     img: "https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Etiam ultricies nisi vel augue",
+  //     desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
+  //     img: "https://images.pexels.com/photos/965117/pexels-photo-965117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Etiam ultricies nisi vel augue",
+  //     desc: "Curabitur blandit mollis lacus. Vivamus consectetuer hendrerit lacus. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nunc nonummy metus. Nam pretium turpis et arcu. Nulla porta dolor. Mauris sollicitudin fermentum libero. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.",
+  //     img: "https://images.pexels.com/photos/261579/pexels-photo-261579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  // ];
 
   return (
     <div className='home'>

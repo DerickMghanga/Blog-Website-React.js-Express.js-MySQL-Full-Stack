@@ -52,7 +52,7 @@ export const login = (req, res) => {
     if (!isPasswordCorrect) return res.status(401).json({message: "Incorrect password! Try again."})
 
     //create token data
-    const token = jwt.sign({id: data[0].id}, process.env.JWT_SECRET_KEY);
+    const token = jwt.sign({id: data[0].id}, process.env.JWT_SECRET_KEY, {expiresIn: "1d"});
 
     //desctructure user Info(data[0]), only send back data without password 
     const {password, ...others} = data[0]
