@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
 import Menu from '../components/Menu';
@@ -13,7 +13,7 @@ import { RxAvatar } from "react-icons/rx";
 const SinglePost = () => {
 
   const [post, setPost] = useState({});
-
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   // const params = useParams();
@@ -30,7 +30,7 @@ const SinglePost = () => {
       try {
         const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -38,6 +38,16 @@ const SinglePost = () => {
 
     fetchPost();
   }, [postId]);
+
+
+  const handleDelete = async() => {
+    try {
+      await axios.delete(`/posts/${postId}`);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
 
   return (
@@ -66,7 +76,7 @@ const SinglePost = () => {
                   </Link>
                 </div>
 
-                <div className="delete-icon">
+                <div className="delete-icon" onClick={handleDelete}>
                   <AiOutlineDelete size={18} />
                 </div>
               </div>

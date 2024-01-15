@@ -1,4 +1,5 @@
 import { db } from "../config/dbConnect.js";
+import jwt from "jsonwebtoken";
 
 //get all posts
 export const getPosts = (req, res) => {
@@ -9,7 +10,7 @@ export const getPosts = (req, res) => {
     const q = cat ? "SELECT * FROM posts WHERE cat = ?" : "SELECT * FROM posts";
 
     db.query(q, [cat], (err, data) => {
-        if (err) return res.send(err);
+        if (err) return res.status(500).send(err);
 
         return res.status(200).json(data);
     })
@@ -22,9 +23,9 @@ export const getPost = (req, res) => {
 
     const q = "SELECT `username`, `title`, `desc`, p.img , u.img AS userImg, `cat`, `date` FROM users as u JOIN posts as p ON u.id = p.uid WHERE p.id = ?";
 
-    db.query(q, [req.params.id], (err, data) => {
+    db.query(q, [id], (err, data) => {
 
-        if (err) return res.send(err);
+        if (err) return res.status(500).send(err);
 
         //console.log(data[0]);
 
@@ -39,7 +40,25 @@ export const addPost = (req, res) => {
 
 //delete a single post
 export const deletePost = (req, res) => {
-    return res.json("from controller")
+    const token = req.cookies.access_token;
+
+    if (!token) return res.status(401).json({message: "Not Authencticated"});
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
+        if (err) return res.status(403).json({message: 'Token is not valid!'});
+
+        const postId = req.params.id;
+
+        const q = "DELETE FROM posts WHERE `id` = ? AND `uid` = ?";
+
+        db.query(q, [postId, userInfo.id], (err, data) => {
+            if (err) res.status(403).json({message: "You can ONLY delete your post!"});
+
+            return res.json({message: "Post has been deleted!"});
+        })
+
+
+    })
 }
 
 //update one post
