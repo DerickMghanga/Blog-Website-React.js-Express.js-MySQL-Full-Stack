@@ -17,7 +17,19 @@ export const getPosts = (req, res) => {
 
 //get one specific post
 export const getPost = (req, res) => {
-    return res.json("from controller")
+
+    const { id } = req.params;
+
+    const q = "SELECT `username`, `title`, `desc`, p.img , u.img AS userImg, `cat`, `date` FROM users as u JOIN posts as p ON u.id = p.uid WHERE p.id = ?";
+
+    db.query(q, [req.params.id], (err, data) => {
+
+        if (err) return res.send(err);
+
+        //console.log(data[0]);
+
+        return res.status(200).json(data[0]);  //"db.query" returns an array
+    })
 }
 
 //add a new post
