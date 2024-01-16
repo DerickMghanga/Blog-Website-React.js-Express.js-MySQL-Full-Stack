@@ -71,7 +71,7 @@ const SinglePost = () => {
             currentUser?.username === post?.username && (
               <div className="edit">
                 <div className="edit-icon">
-                  <Link to={`/write?edit=2`} className='link'>
+                  <Link to={`/write?edit=2`} className='link' state={post}>
                     <CiEdit size={18} />
                   </Link>
                 </div>
