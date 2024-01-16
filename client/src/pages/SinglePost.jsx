@@ -92,7 +92,7 @@ const SinglePost = () => {
 
       </div>
 
-      <Menu />
+      <Menu cat={post?.cat} />
 
     </div>
   )

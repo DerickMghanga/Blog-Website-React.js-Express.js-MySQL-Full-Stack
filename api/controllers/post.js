@@ -56,8 +56,6 @@ export const deletePost = (req, res) => {
 
             return res.json({message: "Post has been deleted!"});
         })
-
-
     })
 }
 
