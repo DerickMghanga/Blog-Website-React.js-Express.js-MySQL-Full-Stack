@@ -52,9 +52,9 @@ const Menu = ({cat}) => {
 
         {
             posts.map((post)=> (
-                <div className='post' key={post.id}>
-                    <img src={post.img} alt="" />
-                    <h2>{post.title}</h2>
+                <div className='post' key={post?.id}>
+                    <img src={`http://localhost:8800/Images/${post?.img}`} alt="" />
+                    <h2>{post?.title}</h2>
                     <button>Read More</button>
                 </div>
             ))

@@ -40,7 +40,7 @@ const SinglePost = () => {
   }, [postId]);
 
 
-  const handleDelete = async() => {
+  const handleDelete = async () => {
     try {
       await axios.delete(`/posts/${postId}`);
       navigate("/");
@@ -49,11 +49,18 @@ const SinglePost = () => {
     }
   }
 
+  //convert string html recieved from server to HTML text
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+
+    return doc.body.textContent
+  }
+
 
   return (
     <div className='single'>
       <div className="content">
-        <img src={post?.img} alt="" />
+        <img src={`http://localhost:8800/Images/${post.img}`} alt="" />
 
         <div className="user">
           {
@@ -86,9 +93,9 @@ const SinglePost = () => {
         </div>
 
         <h1>{post?.title}</h1>
-        
+
         {/* WE ARE USING RICH TEXT TO WRITE OUR POST AND HAS <p></p> by default */}
-        {post?.desc}
+        {getText(post?.desc)}
 
       </div>
 

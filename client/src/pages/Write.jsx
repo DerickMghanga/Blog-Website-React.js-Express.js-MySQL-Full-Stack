@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 const Write = () => {
 
   const state = useLocation().state; //from Link react-router-dom (SimglePost.jsx)
+  const navigate = useNavigate();
 
   const [value, setValue] = useState(state?.desc || '');
   const [title, setTitle] = useState(state?.title || '');
@@ -33,10 +35,22 @@ const Write = () => {
   }
 
   const handleSubmit = async() => {
-    const imgUrl = upload();
+
+    const imgUrl = await upload();
 
     try {
+      state ?   //state exists when updating an existing post
+        await axios.put(`/posts/${state.id}`, {title, desc: value, cat, img: file ? imgUrl : state.img}) 
+        : 
+        await axios.post("/posts", {
+          title,
+          desc: value,
+          cat,
+          img: file ? imgUrl : "",
+          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")  //date format for mySQL
+        })
       
+        navigate("/");
     } catch (err) {
       console.log(err);
     }
